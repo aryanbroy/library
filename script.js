@@ -8,33 +8,61 @@ const input = document.querySelector('input')
 const book = document.querySelector('#bookName')
 const author = document.querySelector('#author');
 const pages = document.querySelector('#page')
+const read = document.querySelector('#read')
 
 displayBtn.addEventListener('click', () => {
     // loop();
     dial.showModal();
 })
-  
+
+function Book(bookName, authorName, pages, read){
+    this.bookName = bookName;
+    this.authorName = authorName;
+    this.pages = pages;
+    this.read = read;
+    this.bookPush = function(){
+        myLibrary.push(bookName);
+        myLibrary.push(authorName)
+        myLibrary.push(pages)
+        myLibrary.push(read)
+    }
+}
+
+
+
 submitBtn.addEventListener('click', () => {
+    // console.log(book.value)
+    let book1 = new Book(book.value, author.value, pages.value, );
+    book1.bookPush();
 
-    let book_name = document.createElement('p');
-    book_name.classList.add('hello');
-    book_name.innerText = book.value;
-    div.appendChild(book_name);
+    let newDiv = document.createElement('div')
+    newDiv.classList.add('inner')
+    display.appendChild(newDiv);
 
-    let author_name = document.createElement('p')
-    author_name.classList.add('hello')
-    author_name.innerText = author.value;
-    div.appendChild(author_name)
+    let bookGrid = document.createElement('p')
+    bookGrid.innerText = `Book name: ${book.value}`
+    newDiv.appendChild(bookGrid)
 
-    let page_number = document.createElement('p')
-    page_number.classList.add('hello')
-    page_number.innerText = page.value;
-    div.appendChild(page_number)
+    let authorGrid = document.createElement('p')
+    authorGrid.innerText = `Author: ${author.value}`
+    newDiv.appendChild(authorGrid)
 
-    console.log(book.value)
-    console.log(author.value)
-    console.log(pages.value)
+    let pageGrid = document.createElement('p');
+    pageGrid.innerText = `Pages: ${pages.value}`
+    newDiv.appendChild(pageGrid)
+
+    let readGrid = document.createElement('p')
+    if(read.checked){
+        readGrid.innerText = `Not Read`;
+    }
+    else{
+        readGrid.innerText = `Read`;
+    }
+
+    newDiv.appendChild(readGrid);
+    dial.close();
 })
+
 
 function loop(){
      myLibrary.forEach((book) => {

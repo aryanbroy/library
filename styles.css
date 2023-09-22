@@ -1,5 +1,13 @@
 .display{
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(4, 1fr);
     gap: 50px;
+}
+.inner{
+    background-color: red;
+}
+
+p{
+    font-size: 1.5rem;
+
 }
