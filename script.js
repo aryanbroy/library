@@ -1,4 +1,4 @@
-const myLibrary = ["book 1", "book 2", "book 3"];
+const myLibrary = [];
 
 const displayBtn = document.querySelector('#btn');
 const display = document.querySelector('.display');
@@ -9,6 +9,7 @@ const book = document.querySelector('#bookName')
 const author = document.querySelector('#author');
 const pages = document.querySelector('#page')
 const read = document.querySelector('#read')
+const btnRead = document.querySelector('.btnRead');
 
 displayBtn.addEventListener('click', () => {
     // loop();
@@ -28,11 +29,9 @@ function Book(bookName, authorName, pages, read){
     }
 }
 
-
-
 submitBtn.addEventListener('click', () => {
-    // console.log(book.value)
-    let book1 = new Book(book.value, author.value, pages.value, );
+
+    let book1 = new Book(book.value, author.value, pages.value,read.checked );
     book1.bookPush();
 
     let newDiv = document.createElement('div')
@@ -51,17 +50,19 @@ submitBtn.addEventListener('click', () => {
     pageGrid.innerText = `Pages: ${pages.value}`
     newDiv.appendChild(pageGrid)
 
-    let readGrid = document.createElement('p')
+    let readGrid = document.createElement('button')
+    readGrid.classList.add('btnRead');
     if(read.checked){
-        readGrid.innerText = `Not Read`;
+        readGrid.innerText = `NOT READ`;
     }
     else{
-        readGrid.innerText = `Read`;
+        readGrid.innerText = `READ`;
     }
 
     newDiv.appendChild(readGrid);
     dial.close();
 })
+
 
 
 function loop(){
